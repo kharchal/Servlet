@@ -1,0 +1,35 @@
+CREATE TABLE books
+(
+    id INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    name VARCHAR(45) NOT NULL,
+    author VARCHAR(45),
+    qty INT(11),
+    pages INT(11),
+    price INT(11),
+    genre INT(11) NOT NULL,
+    CONSTRAINT fk_1 FOREIGN KEY (genre) REFERENCES genres (id)
+);
+CREATE INDEX fk_1_idx ON books (genre);
+CREATE TABLE genres
+(
+    id INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    name VARCHAR(45) NOT NULL,
+    note VARCHAR(45)
+);
+CREATE TABLE phones
+(
+    id INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    phone VARCHAR(12) NOT NULL,
+    user INT(11) NOT NULL,
+    CONSTRAINT ed23 FOREIGN KEY (user) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+CREATE INDEX ed23_idx ON phones (user);
+CREATE TABLE users
+(
+    id INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    login VARCHAR(45) NOT NULL,
+    password VARCHAR(45) NOT NULL,
+    name VARCHAR(45),
+    account INT(11),
+    role VARCHAR(1) DEFAULT 'g' NOT NULL
+);
